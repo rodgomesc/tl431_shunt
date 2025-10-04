@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "circuit-sim"
+version = "0.1.0"
+description = "TL431 3.3 V shunt regulator simulation using PySpice"
+authors = ["rodgomesc"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.13.5"
+pyspice = "^1.5"
+
+[build-system]
+requires = ["poetry-core>=1.2.0"]
+build-backend = "poetry.core.masonry.api"
+
+

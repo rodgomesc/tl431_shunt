@@ -1,0 +1,20 @@
+# Exclude Poetry cache and virtual envs to speed up build
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Exclude git and IDE files
+.git/
+.gitignore
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Exclude any local output or logs
+*.log
+*.out
+

@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  circuit-sim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: circuit-sim:latest
+    container_name: tl431-simulation
+    volumes:
+      # Mount the script so you can edit and re-run without rebuilding
+      - ./simulate_tl431_shunt.py:/app/simulate_tl431_shunt.py:ro
+    command: python simulate_tl431_shunt.py
+
