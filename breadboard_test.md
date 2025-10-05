@@ -38,10 +38,9 @@
 ### Our Circuit Column Assignments
 - **Column 11:** Fuse input
 - **Column 16:** Fuse output / Resistor input
-- **Column 21:** Resistor output / VOUT
-- **Column 26:** Main VOUT distribution point
-- **Column 36:** TL431 IC
-- **Columns 41-46-51:** Potentiometer (3 pins)
+- **Column 26:** Resistor output / Main VOUT distribution point
+- **Columns 36-37-38:** TL431 IC (3 adjacent pins)
+- **Columns 41-43-45:** Potentiometer (3 pins, 0.2" spacing)
 - **Column 56:** 22nF compensation capacitor
 
 ---
@@ -142,7 +141,7 @@ The regulated 3.3V output appears at **column 26**.
 
 ### 🔲 **STEP 7: Install the TL431 IC**
 
-**Position:** Column 36, Rows C, F, H
+**Position:** Columns 36, 37, 38, Row D
 
 **TL431 Pinout (TO-92 package, flat side facing you, pins down):**
 - **Pin 1 (LEFT):** REF (reference input)
@@ -150,17 +149,18 @@ The regulated 3.3V output appears at **column 26**.
 - **Pin 3 (RIGHT):** Cathode (K) - connects to VOUT
 
 **Installation:**
-1. Insert Pin 1 (REF) into **36C** (top section)
-2. Insert Pin 2 (Anode) into **36F** (bottom section, crosses gap)
-3. Insert Pin 3 (Cathode) into **36H** (bottom section)
+1. Insert Pin 1 (REF) into **36D** 
+2. Insert Pin 2 (Anode) into **37D** (middle pin)
+3. Insert Pin 3 (Cathode) into **38D** (right pin)
+4. All three pins should be in the same row D, adjacent columns
 
 **Connect TL431 Anode to GND:**
-4. Take a BLACK jumper wire
-5. Connect from **36F** to bottom **- rail**
+5. Take a BLACK jumper wire
+6. Connect from **37D** to bottom **- rail**
 
 **Connect TL431 Cathode to VOUT:**
-6. Take an ORANGE jumper wire
-7. Connect from **26E** to **36H**
+7. Take an ORANGE jumper wire
+8. Connect from **26D** to **38D**
 
 > **Result:** TL431 now senses VOUT and can regulate by sinking current
 
@@ -168,7 +168,7 @@ The regulated 3.3V output appears at **column 26**.
 
 ### 🎛️ **STEP 8: Install the Potentiometer (10kΩ)**
 
-**Position:** Columns 41, 46, 51 (Row D)
+**Position:** Columns 41, 43, 45 (Row E)
 
 **Potentiometer Pinout:**
 - **Pin 1:** One end of resistor → connects to VOUT
@@ -176,22 +176,22 @@ The regulated 3.3V output appears at **column 26**.
 - **Pin 3:** Other end → connects to GND
 
 **Installation:**
-1. Insert Pin 1 into **41D**
-2. Insert Pin 2 (wiper/center) into **46D**
-3. Insert Pin 3 into **51D**
-4. Ensure pot sits flat on breadboard
+1. Insert Pin 1 into **41E**
+2. Insert Pin 2 (wiper/center) into **43E**
+3. Insert Pin 3 into **45E**
+4. Ensure pot sits flat on breadboard (0.2" pin spacing)
 
 **Connect POT Pin 1 to VOUT:**
 5. Take an ORANGE jumper wire
-6. Connect from **26D** to **41D**
+6. Connect from **26E** to **41E**
 
 **Connect POT Wiper (Pin 2) to TL431 REF:**
 7. Take a GREEN jumper wire
-8. Connect from **46D** to **36C** (TL431 pin 1)
+8. Connect from **43E** to **36D** (TL431 pin 1)
 
 **Connect POT Pin 3 to GND:**
 9. Take a BLACK jumper wire
-10. Connect from **51D** to bottom **- rail**
+10. Connect from **45E** to bottom **- rail**
 
 > **Result:** Potentiometer forms voltage divider; wiper voltage goes to TL431 REF
 
@@ -199,10 +199,10 @@ The regulated 3.3V output appears at **column 26**.
 
 ### 🧩 **STEP 9: Install the Compensation Capacitor (22nF)**
 
-**Position:** Column 56, Row C to Row G
+**Position:** Column 56, Row C to Row E
 
 1. Insert one lead into **56C** (top section)
-2. Insert other lead into **56G** (bottom section)
+2. Insert other lead into **56E** (same section, 2 rows below)
 3. Ceramic capacitors are non-polarized (either way works)
 
 **Connect 22nF Top to VOUT:**
@@ -211,7 +211,7 @@ The regulated 3.3V output appears at **column 26**.
 
 **Connect 22nF Bottom to REF:**
 6. Take a GREEN jumper wire
-7. Connect from **56G** to **46D** (shares with pot wiper)
+7. Connect from **56E** to **43E** (shares with pot wiper)
 
 > **Result:** 22nF stabilizes the feedback loop between VOUT and REF
 
@@ -224,13 +224,13 @@ Before connecting the battery, verify:
 - [ ] **Fuse** is in series with positive power (11C to 16C)
 - [ ] **4.7kΩ resistor** connects fuse to VOUT (16C to 26C)
 - [ ] **680µF capacitor** positive to 26E, negative to GND (26H to - rail)
-- [ ] **TL431 Pin 1** (REF) is at 36C
-- [ ] **TL431 Pin 2** (Anode) is at 36F and connected to GND
-- [ ] **TL431 Pin 3** (Cathode) is at 36H and connected to VOUT (via 26E)
-- [ ] **POT Pin 1** at 41D connects to VOUT
-- [ ] **POT Pin 2** (wiper) at 46D connects to TL431 REF (36C)
-- [ ] **POT Pin 3** at 51D connects to GND
-- [ ] **22nF capacitor** connects between VOUT (56C→26C) and REF (56G→46D)
+- [ ] **TL431 Pin 1** (REF) is at 36D
+- [ ] **TL431 Pin 2** (Anode) is at 37D and connected to GND
+- [ ] **TL431 Pin 3** (Cathode) is at 38D and connected to VOUT (via 26D)
+- [ ] **POT Pin 1** at 41E connects to VOUT
+- [ ] **POT Pin 2** (wiper) at 43E connects to TL431 REF (36D)
+- [ ] **POT Pin 3** at 45E connects to GND
+- [ ] **22nF capacitor** connects between VOUT (56C→26C) and REF (56E→43E)
 - [ ] **All GND connections** go to bottom - rail
 - [ ] **No short circuits** between + and - rails
 
@@ -325,9 +325,9 @@ To verify regulation under load:
 3. ✅ TL431 anode not grounded
 
 **Solutions:**
-- Verify GREEN wire from pot wiper (46D) to TL431 REF (36C)
-- Check BLACK wire from TL431 anode (36F) to GND rail
-- Ensure pot pin 3 (51D) is grounded
+- Verify GREEN wire from pot wiper (43E) to TL431 REF (36D)
+- Check BLACK wire from TL431 anode (37D) to GND rail
+- Ensure pot pin 3 (45E) is grounded
 
 ---
 
@@ -382,10 +382,10 @@ Use your multimeter to verify voltages at key points:
 | Battery + | 10.5V - 12.6V | 3S LiPo voltage range |
 | After Fuse | 10.5V - 12.6V | Same as battery (small drop) |
 | After Resistor (VOUT) | 3.30V | Regulated output |
-| TL431 REF (36C) | 2.495V | Internal reference |
-| POT Wiper (46D) | 2.495V | Should match REF |
-| TL431 Anode (36F) | 0V | Grounded |
-| TL431 Cathode (36H) | 3.30V | Same as VOUT |
+| TL431 REF (36D) | 2.495V | Internal reference |
+| POT Wiper (43E) | 2.495V | Should match REF |
+| TL431 Anode (37D) | 0V | Grounded |
+| TL431 Cathode (38D) | 3.30V | Same as VOUT |
 | 680µF Negative | 0V | Grounded |
 
 ---
